@@ -1,0 +1,1024 @@
+.content{
+  *{
+    
+  }
+
+h2{
+    font-size: 30px;
+  }
+#overview-header{
+  text-align: center;
+}
+
+table {
+    margin: 0 10%;
+    width: 80%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 1.7em;
+    border:4px groove #333;
+    
+    colgroup {
+      col:nth-child(1) { width: 3%; }   // ID
+      col:nth-child(2) { width: 12%; }  // Titel
+      col:nth-child(3) { width: 10%; }  // Album
+      col:nth-child(4) { width: 10%; }  // Künstler
+      col:nth-child(5) { width: 9%; }  // Genre
+      col:nth-child(6) { width: 9%; }  // Mood
+      col:nth-child(7) { width: 9%; }   // Plattform
+      col:nth-child(8) { width: 7%; }   // Cover
+      col:nth-child(9) { width: 5%; }  // Edit (Stift)
+      col:nth-child(10) { width: 5%; }  // Delete (X)
+    }
+
+ 
+   
+  }
+
+  th {
+    border-left:1px solid rgb(114, 188, 209);
+    white-space: nowrap;
+    .sort-link {
+      color: inherit;
+      text-decoration: none;
+          
+      &:hover {
+        text-decoration: underline;
+        color: #007bff;
+      }
+      
+      &:visited {
+        color: inherit;
+      }
+    }
+    
+    &:nth-child(9),  // Edit
+    &:nth-child(10) { // Delete
+      // font-size: x-large;
+      // text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  td {
+    .edit-btn .delete-btn{
+      font-size: 10px;
+    }
+    padding: 0.1em 0.2em;
+    font-size: .9em;
+    border: 1px solid black;
+    overflow: hidden;
+    word-wrap: break-word;
+    max-height: 10vh;
+    border-top:2px groove rgb(12, 20, 31);
+
+
+    &:nth-child(1) { text-align: center; }
+    
+    &:nth-child(8) {
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px !important;
+      min-height: 60px;
+      max-height: 80px;
+    }
+    
+    a{
+      white-space: normal !important;
+    }
+
+    &:nth-child(9),  // Edit
+    &:nth-child(10) { // Delete
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      width: 2% !important;
+    }
+  }
+}
+
+.cover-thumbnail {
+  width: 100%;
+  max-width: 70px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.3s ease;
+  margin: 4px;
+  
+  &:hover {
+    filter: contrast(1.18) saturate(1.2);
+  }
+}
+
+.cover-text {
+  font-size: 0.7em;
+  color: #666;
+  font-style: italic;
+  font-family: monospace;
+  padding: 4px;
+  text-align: center;
+}
+
+.current-cover{
+  display:inline;
+}
+#currentCoverDisplay{
+  display:inline;
+  height: 50%;
+  width: 50%;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalImageZoom {
+  from {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.cover-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(73, 77, 88, 0.4);
+  animation: modalFadeIn 0.3s ease-in-out;
+  
+  .cover-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  
+  .cover-modal-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 50%;
+    max-height: 50%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: modalImageZoom 0.4s ease-out;
+  }
+}
+
+.cover-error {
+  font-size: 0.7em;
+  color: #666;
+  font-style: italic;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    margin: 2vh 0;
+    
+    &:hover {
+        opacity: 0.7;
+        background: none;
+    }
+    
+    &:focus {
+        outline: none;
+        background: none;
+    }
+}
+
+.modal {
+    .input-text{
+        width:18em;
+      }
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(73, 77, 88, 0.4);
+    font-size: 1.5em;
+  
+    input{
+      font-size: inherit;
+      
+    }
+    
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 75%;
+    max-width: 80%;
+    border-radius: 5px;
+    height:fit-content;
+    #updateModalTitle{
+      font-size: 1.5em;
+      text-align: center;
+      display:block;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+
+
+#insertForm{
+  text-align: center;
+
+  .insert-label{
+    width:fit-content
+  }
+  .insert-input{
+
+  }
+
+}
+#insertModal{
+  h2{
+    text-align: center;
+  }
+}
+
+@media (min-width:1440px){
+   #insertBtn{
+    font-size: 1.8em;
+    margin:1.5% 0 3%;
+  }
+.modal-content{
+  width:50%;
+}
+.modal-update{
+  width:75%;
+}
+.form-column{
+  margin: 0 0 0 2em;
+  position: relative;
+  z-index: 10;
+  
+  input, textarea, select {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 11;
+  }
+}
+  .modal {
+    .input-text{
+        margin-top: 0;
+        width:16em;
+      }
+    }
+    #updateForm{
+      margin-top: 30px;
+    }
+}
+
+@media (min-width:1000px) and (max-width:1439px){
+  #insertBtn{
+    font-size: 1.5em;
+  }
+  .modal {
+    .input-text{
+        width:14em;
+      }
+      #updateForm{
+      margin-top: 30px;
+    }
+    }
+}
+#insertBtn{
+      background: linear-gradient(135deg, 
+        rgb(106, 196, 255) 0%, 
+        rgba(141, 212, 255, 1) 50%, 
+        rgba(176, 228, 255, 1) 100%
+    );
+ color: rgb(0, 16, 39);
+    border: 2px solid rgba(0, 16, 39, 0.2);
+    border-radius: 8px;
+    padding: 12px 24px;
+    
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+        opacity: 1; // Überschreibt das globale 0.7
+        background: linear-gradient(135deg, 
+            rgba(86, 176, 255, 1) 0%, 
+            rgba(121, 192, 255, 1) 50%, 
+            rgba(156, 208, 255, 1) 100%
+        );
+    }
+  
+}
+#explainer{
+  font-size: small;
+  margin: 0 auto;
+  text-align: center;
+}
+#updateForm {
+  .modalField-small{
+    display:flex;
+    align-items:center;
+    label{
+      flex: 0 0 3.2em;
+      text-align: left;
+      // padding-right: .1em;
+    }
+  }
+  .modalField-radio{
+    display: flex;
+    text-align: center;
+    gap: 1em;
+    
+    label {
+      flex: 0 0 3em;
+      text-align: left;
+      padding-right: .1em;
+    }
+    
+    .radio-group {
+      display: flex;
+      gap: 1em;
+      align-items: center;
+    }
+  }
+  .modalField-large{
+    display: inline-flex;
+    align-items: center;
+    label{
+      flex: 0 0 3em;
+      text-align: left;
+      padding-right: .1em;
+    }
+    input {
+      flex: 1;
+    }
+  }
+  .modalField-submit{
+    display: block;
+    margin-top: 1em;
+  }
+  .cover-section{
+    text-align: end;
+    align-items: end;
+    align-content: end;
+  }
+}
+
+.modal-layout{
+  display:flex;
+  // justify-content: space-between;
+  // gap:2%;
+  .cover-column{
+   width: 100%;
+   align-content: center;
+   text-align: center;
+   margin: 0 0 5%;
+   img{
+    width:50%;
+   }
+  }
+}
+
+.filter-navigation {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.filter-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: center;
+}
+
+.filter-link {
+    // display: block;
+    color: #122755; 
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+        
+    &:hover {
+        // background: #e9ecef;
+        text-decoration: underline dashed;
+        color: #007bff !important;
+    }
+}
+
+.filter-item {
+    position: relative;
+    
+    &:not(:last-child) {
+        border-right: 1px solid #ddd;
+    }
+    
+    
+    
+    &.active .filter-link {
+        background: #007bff;
+        color: white;
+    }
+    
+    &.has-submenu {
+        .filter-link::after {
+            content: '';
+            margin-left: 5px;
+        }
+        
+        &:hover .submenu {
+            display: block;
+            animation: submenuFadeIn 0.2s ease-out;
+        }
+    }
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 250px;
+    max-width: 350px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    
+    li {
+        list-style: none;
+        border-bottom: 1px solid #f0f0f0;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+        
+        a {
+            display: block;
+            padding: 10px 15px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s ease;
+            
+            &:hover {
+                background: #f8f9fa;
+                color: #007bff;
+            }
+        }
+        
+        &.submenu-loading {
+            padding: 15px;
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        &.no-items {
+            padding: 15px;
+            text-align: center;
+            color: #6c757d;
+        }
+    }
+}
+
+@keyframes submenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width:1000px){
+  .filter-status{
+    font-size: 1.5em;
+  }
+}
+
+.filter-status {
+    background: #e3f2fd;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin:20px auto;
+    display: fit-content;
+    width: 35%;
+text-align: center;
+    gap: 3rem;
+    border-left: 4px solid #2196f3;
+    
+    .filter-reset{
+      display:block;
+      text-align: center;
+      font-weight: 525;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+
+    .status-text {
+        color: #1565c0;
+        
+    }
+    
+    .clear-filter-btn {
+        background: #ff5722;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 12px;
+        
+        &:hover {
+            background: #d84315;
+        }
+    }
+}
+
+.songs-container {
+    .no-data {
+        text-align: center;
+        padding: 3em;
+        color: #6c757d;
+        font-style: italic;
+    }
+}
+
+.songs-counter {
+    text-align: right;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    color: #495057;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .filter-menu {
+        flex-direction: column;
+    }
+
+      .modal{
+    input{
+      width:7em;
+    }
+  }
+    
+    .filter-item {
+        border-right: none !important;
+        border-bottom: 1px solid #ddd;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    
+    .submenu {
+        position: static;
+        display: none;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        max-height: 200px;
+    }
+    
+    .filter-item.has-submenu:hover .submenu {
+        display: block;
+    }
+}
+
+
+
+@media (max-width: 1439px) {
+
+.modal-layout{
+  display:flex;
+  // justify-content: space-between;
+  // gap:2%;
+  .cover-column{
+   width: 100%;
+   align-content: center;
+   text-align: center;
+   margin: 0 0 5%;
+   img{
+    width:65%;
+   }
+  }
+}
+
+  .content {
+    width: 100%;
+    
+    section {  
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      margin: 0 auto;
+      
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+        
+        &:hover {
+          background: #a8a8a8;
+        }
+      }
+    }
+    
+    table {
+      min-width: 1000px;
+      font-size: 1.75em;
+      margin: 0 auto;
+      width: 750px;
+      
+      th, td {
+        padding: 0.15rem;
+        font-size: 0.75em;
+      }
+      
+      colgroup {
+        col:nth-child(1) { width: 4%; }   // ID
+        col:nth-child(2) { width: 10%; }  // Titel
+        col:nth-child(3) { width: 10%; }  // Album 
+        col:nth-child(4) { width: 8%; }  // Künstler
+        col:nth-child(5) { width: 8%; }  // Genre
+        col:nth-child(6) { width: 8%; }  // Mood
+        col:nth-child(7) { width: 10%; }  // Plattform
+        col:nth-child(8) { width: 10%; }   // Cover
+        col:nth-child(9) { width: 8%; }   // Edit
+        col:nth-child(10) { width: 8%; }  // Delete
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .modal{
+    .input-text{
+      width:12em;
+    }
+    #updateForm{
+      margin-top: 15px;
+    }
+  }
+.input-text{
+
+}
+#insertForm{
+
+}
+#insertModal{
+
+}
+.modal-content{
+
+}
+.modalField-radio{
+  padding:0;
+  display:flex;
+  width:50%;
+  margin: 0 auto;
+}
+.form-checkbox{
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size:.8em;
+}
+    .modal{
+    input{
+      width:12em;
+    }
+  }
+  .modal-content{
+      #updateModalTitle{
+      font-size: 1em;
+    }
+  }
+  .modal-layout{
+  display:flex;
+  // justify-content: space-between;
+  // gap:2%;
+   
+  .cover-column{
+        width: 45%;
+        align-content: end;
+        text-align: end;
+        margin: 0px 0px 0%;
+        position: relative;
+        bottom: 0.5em;
+        right: .5em;
+   img{
+    width:50%;
+   }
+  }
+  .form-column{
+    width: 45%;
+    display:inline;
+    form{
+      display:inherit;
+    }
+    #updateForm{
+      width:40%;
+    }
+  }
+}
+
+  .content {
+    width: 100%;
+    
+    section {  
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      margin: 0 auto;
+      
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+        
+        &:hover {
+          background: #a8a8a8;
+        }
+      }
+    }
+    
+    table {
+      min-width: 850px;
+      font-size: 1.5em;
+      margin: 0 0 0 5%;
+      width: 750px;
+      
+      td {
+        padding: 0.15rem;
+        font-size: 1em;
+        &:nth-child(8) &:nth-child(7) {
+          display: none;
+        }
+      }
+      th {
+        &:nth-child(8) &:nth-child(7) { 
+          display: none;
+        }
+        font-size: .8em;
+      }
+      
+      colgroup {
+        col:nth-child(1) { width: 4%; }   // ID
+        col:nth-child(2) { width: 14%; }  // Titel
+        col:nth-child(3) { width: 13%; }  // Album 
+        col:nth-child(4) { width: 13%; }  // Künstler
+        col:nth-child(5) { width: 10%; }  // Genre
+        col:nth-child(6) { width: 10%; }  // Mood
+        col:nth-child(7) { width: 0%; }  // Plattform
+        col:nth-child(8) { width: 0%; }   // Cover
+        col:nth-child(9) { width: 8%; }   // Edit 
+        col:nth-child(10) { width: 8%; }  // Delete 
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .modal{
+    .input-text{
+      width:10em;
+    }
+  }
+  .modal{
+    input{
+      width:10em;
+    }
+  }
+#insertForm{
+    .modalField-submit{
+    margin:5px;
+    padding:5px;
+    display:flex;
+  }
+}
+
+.modal-layout{
+  display:flex;
+  // justify-content: space-between;
+  // gap:2%;
+  .cover-column{
+    .cover-title{
+      font-size:.7em;
+    }
+        width: 45%;
+        align-content: end;
+        text-align: end;
+        margin: 0px 0px 0%;
+        position: relative;
+        bottom: 0.5em;
+        right: .5em;
+   img{
+    width:50%;
+   }
+  }
+  .form-column{
+    width: 45%;
+    display:inline;
+    form{
+      display:inherit;
+    }
+    #updateForm{
+      width:40%;
+    }
+  }
+}
+
+  .content {
+    width: 100%;
+    
+    font-size: 1em;
+    section {  
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      margin: 0 0 0 5%;
+      
+      -webkit-overflow-scrolling: touch;
+      
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+        
+        &:hover {
+          background: #a8a8a8;
+        }
+      }
+    }
+    
+    table {
+      min-width: 600px;
+      margin: 0 0 0 15%;
+      width: 700px;
+      font-size: 1.4em;
+      
+      th, td{
+        padding: 0.1rem;
+        
+        &:nth-child(1),  // ID
+        &:nth-child(7),  // Platform  
+        &:nth-child(8) { // Cover
+          display: none;
+        }
+      }
+      th{
+        font-size: .7em;
+      }
+      td{
+        font-size: .8em;
+      }
+      
+      colgroup {
+        col:nth-child(1) { width: 0%; }   // ID 
+        col:nth-child(2) { width: 13%; }  // Titel
+        col:nth-child(3) { width: 10%; }  // Album 
+        col:nth-child(4) { width: 10%; }  // Künstler
+        col:nth-child(5) { width: 10%; }  // Genre
+        col:nth-child(6) { width: 10%; }  // Mood
+        col:nth-child(7) { width: 0%; }   // Plattform
+        col:nth-child(8) { width: 0%; }   // Cover
+        col:nth-child(9) { width: 9%; }   // Edit 
+        col:nth-child(10) { width: 9%; }  // Delete 
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .modal{
+    .input-text{
+      width:7em;
+    }
+  }
+
+  .modalField-radio{
+  padding:0;
+  display:flex;
+  width:50%;
+  margin: 0 0 0 -15px;
+}
+
+  .content {
+    section {  
+      table {
+        min-width: 450px;
+        width: 600px;
+        margin: 0 0 0 15%;
+        
+        td {
+          font-size: 1em;
+        }
+        th {
+          font-size: 0.8em;
+        }
+        
+        colgroup {
+          col:nth-child(1) { width: 0%; } 
+          col:nth-child(2) { width: 11%; }
+          col:nth-child(3) { width: 11%; }
+          col:nth-child(4) { width: 11%; }
+          col:nth-child(5) { width: 11%; }
+          col:nth-child(6) { width: 11%; } 
+          col:nth-child(7) { width: 0%; } 
+          col:nth-child(8) { width: 0%; } 
+          col:nth-child(9) { width: 5%; } 
+          col:nth-child(10) { width: 5%; }
+        }
+      }
+    }
+  }
+}

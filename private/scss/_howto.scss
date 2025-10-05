@@ -1,0 +1,97 @@
+.howto-container {
+    display: flex;
+    .text-content h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+    }
+
+        flex-direction: column;
+        gap: 4rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .tutorial-section {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+    
+    .tutorial-section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    
+    .text-content {
+        flex: 1;
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        line-height: 1.6;
+        border: groove rgb(59, 193, 255) 3px;
+        // border: groove rgb(27, 103, 204) 3px;
+    }
+    
+    .image-content {
+        flex: 1;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 300px;
+        border: groove rgb(27, 103, 204) 3px;
+        // border: groove rgb(59, 193, 255) 3px;
+        background-size: contain;
+    }
+    
+    .section-1 .image-content {
+        background-image: url('../../public/img/presets/tutorial_table.jpg');
+    }
+    
+    .section-2 .image-content {
+        background-image: url('../../public/img/presets/tutorial_insert.jpg');
+        
+    }
+    
+    .section-3 .image-content {
+        background-image: url('../../public/img/presets/tutorial_update.jpg');
+    }
+    
+    .text-content h3 {
+        color: #333;
+        margin-bottom: 1rem;
+        border-bottom: 3px groove #80b5ee;
+        padding-bottom: 0.5rem;
+        font-size: x-large;
+    }
+        
+  @media (max-width: 1000px) {
+            .tutorial-section,
+            .tutorial-section:nth-child(even) {
+                flex-direction: column;
+            }
+            .image-content{
+                width:80%;
+                order:-1;
+                margin:0 auto;
+
+            }
+      
+        }  
+
+        @media (max-width: 768px) {
+            .tutorial-section, 
+            .tutorial-section:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .image-content {
+                min-height: 200px;
+                order:-1;       
+                margin:0 auto;
+            }
+        }

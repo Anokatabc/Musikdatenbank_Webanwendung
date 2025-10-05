@@ -1,0 +1,177 @@
+.footer {
+    background-color: rgb(106, 196, 255);
+    color: rgb(0, 16, 39);
+    height: fit-content;
+    margin: 5% 0 0;
+    padding: 3% 5%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    
+    // Top-Link
+    .toTopDiv {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        
+        .toTop {
+            color: rgb(0, 2, 34);
+            text-decoration: none;
+            font-size: 14px;
+            text-align: center;
+            display: inline-block;
+            line-height: 1.2;
+            padding: 8px 12px;
+            border-radius: 4px;
+            
+            &:hover {
+                text-decoration: none;
+                font-weight: bold;
+                font-size: larger;
+            }
+            
+            b {
+                font-size: 18px;
+            }
+        }
+    }
+    
+    // Contact Section (Links)
+    .contact {
+        flex: 1;
+        max-width: 45%;
+        
+        h3 {
+            color: #00021d;
+            font-size: 1.3em;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .information-text {
+            margin: 0 0 1rem 0;
+            line-height: 1.5;
+            font-size: 0.95em;
+            color: #00021d;
+            
+
+        }
+    }
+    
+    // Location Section (Rechts)
+    .location {
+        flex: 1;
+        max-width: 45%;
+        
+        h3 {
+            color: #00021d;
+            font-size: 1.3em;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .location-text {
+            margin: 0 0 1.5rem 0;
+            line-height: 1.5;
+            font-size: 0.95em;
+            color: #00021d;
+        }
+        
+        // Bottom Footer Content
+        .bottom-footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            
+            .copyright {
+                .copyright-text {
+                    font-size: 0.85em;
+                    color: #00021d;
+                    margin: 0;
+                    text-align: right;
+                }
+            }
+            
+            .decoration {
+                margin-top: 0.5rem;
+                height: 3px;
+                background: linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(255, 255, 255, 0.3) 50%, 
+                    transparent 100%);
+                border-radius: 2px;
+            }
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        padding: 4% 5%;
+        gap: 1.5rem;
+        
+        .toTopDiv {
+            position: static;
+            align-self: center;
+            order: -1;
+            margin-bottom: 1rem;
+            
+            .toTop {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+        }
+        
+        .contact,
+        .location {
+            max-width: 100%;
+            
+            h3 {
+                font-size: 1.2em;
+            }
+        }
+        
+        .location .bottom-footer {
+            margin-top: 1.5rem;
+            
+            .copyright-text {
+                text-align: center;
+                font-size: 0.8em;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 6% 4%;
+        
+        .contact,
+        .location {
+            h3 {
+                font-size: 1.1em;
+            }
+            
+            .information-text,
+            .location-text {
+                font-size: 0.9em;
+            }
+        }
+        
+        .toTopDiv .toTop {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+    }
+}
