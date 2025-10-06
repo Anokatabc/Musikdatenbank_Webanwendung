@@ -26,7 +26,7 @@
                 Beginnen wir mit der Übersichtsseite. Auf diese kommen Sie zurück, wenn Sie oben auf 
                 <b>Hauptseite</b> oder auch auf das Logo 🎼 klicken. <br>
                 <br>- Die Übersichtsseite hat oben einen großen Button, mittels dessen man neue Songs in die Datenbank eintragen kann. Mehr hierzu im nächsten Teil.
-                <br>- Die rot hervorgehobene Zeile am oberen Rand der Tabelle sind klickbare Felder, die eine Sortierfunktion beinhalten. Der erste Kick sortiert 
+                <br>- In der rot hervorgehobenen Zeile am oberen Rand der Tabelle liegen klickbare Felder, die eine Sortierfunktion beinhalten. Der erste Klick sortiert 
                 aufsteigend, der zweite absteigend.
                 <br>- Die grün hervorgehobenen Spalten sind ebenfalls klickbar. Diese initiieren eine Filter-Funktion. Alle Lieder von diesem Album oder Künstler oder 
                 Genre oder Mood werden nun angezeigt.
@@ -34,7 +34,7 @@
                 <br>Der Stift ✏️ öffnet ein Modal (ein temporäres Bearbeitungsfenster) zur Veränderung von Einträgen in der Datenbank. Es wird die aktuelle Zeile 
                 bearbeitet. 
                 <br>Das 
-                Kreuz ❌ dient dem Löschen eines Datensatzes. Auch dieser behandelt die aktuell ausgewählte zeile.</p>
+                Kreuz ❌ dient dem Löschen eines Datensatzes. Auch dieser behandelt die aktuell ausgewählte Zeile.</p>
             </div>
             <div class="image-content">
             </div>
@@ -65,11 +65,11 @@ in der Datenbank vorliegt, werden nachfolgende Einträge ungeachtet der Formatie
                 <h3>Songs bearbeiten</h3>
                 <p>Ein Klick auf den Stift ✏️ öffnet ein Bearbeitungsfenster. Hier lassen sich vorhandene 
                     Einträge in der Datenbank ändern oder anpassen. Löscht man einfach den Inhalt eines 
-                    Feldes und drückt auf <b>Song aktualisieren</b>, so wird das Feld einfach auf <i>NULL</i> gesetzt. 
+                    Feldes und drückt auf <b>Song aktualisieren</b>, so wird das Feld einfach geleert. 
                     
                     <br>
                     <br>
-                    Existente Werte des jeweiligen Datensatzes werden in das Bearbeitungsfeld geladen 
+                    Alle existierenden Werte des jeweiligen Datensatzes werden in ihr jeweiliges Bearbeitungsfeld geladen 
                     und sind vorausgewählt.
                     
                     <br>
